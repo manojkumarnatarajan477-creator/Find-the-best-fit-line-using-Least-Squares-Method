@@ -22,44 +22,42 @@ To implement univariate Linear Regression to fit a straight line using least squ
 ## Program:
 ```python
 
+
+
 import numpy as np
 import matplotlib.pyplot as plt
 
-# Input data
-X = np.array([1, 2, 3, 4, 5])
-Y = np.array([2, 4, 5, 4, 5])
+# Sample dataset (Univariate)
+x = np.array([1, 2, 3, 4, 5])     # Input feature
+y = np.array([2, 4, 5, 4, 5])     # Target values
 
-# Calculate means
-x_mean = np.mean(X)
-y_mean = np.mean(Y)
+# Number of observations
+n = len(x)
 
-# Calculate slope (m)
-m = np.sum((X - x_mean) * (Y - y_mean)) / np.sum((X - x_mean) ** 2)
+# Calculate slope (m) and intercept (c)
+m = (n * np.sum(x * y) - np.sum(x) * np.sum(y)) / (n * np.sum(x ** 2) - (np.sum(x)) ** 2)
+c = (np.sum(y) - m * np.sum(x)) / n
 
-# Calculate intercept (c)
-c = y_mean - m * x_mean
+print(f"Slope (m): {m}")
+print(f"Intercept (c): {c}")
 
-# Predict Y values
-Y_pred = m * X + c
+# Predict y values
+y_pred = m * x + c
 
-# Display results
-print("Slope (m) =", m)
-print("Intercept (c) =", c)
-print("Linear Regression Equation: Y =", m, "X +", c)
-
-# Plot the data and regression line
-plt.scatter(X, Y,color="red",label="Actual Data")
-plt.plot(X, Y_pred , color="blue", label="Regression Line")
-plt.xlabel("X")
-plt.ylabel("Y")
-plt.title("Univariate Linear Regression")
+# Plot the data points and regression line
+plt.scatter(x, y, color='blue', label='Actual data')
+plt.plot(x, y_pred, color='red', label='Fitted line')
+plt.xlabel('X')
+plt.ylabel('Y')
+plt.title('Univariate Linear Regression using Least Squares')
 plt.legend()
 plt.show()
+
 
 ```
 
 ## Output:
-<img width="1084" height="698" alt="image" src="https://github.com/user-attachments/assets/9a1565ec-54e6-4463-bb9b-98a593adcda5" />
+<img width="840" height="679" alt="image" src="https://github.com/user-attachments/assets/28972043-845a-43b8-bd3f-0f2cf0c0046e" />
 
 
 
